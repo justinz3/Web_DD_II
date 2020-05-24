@@ -7,6 +7,7 @@
 	let score = 0;
 	let levels = ['not worthy', 'noob', 'padawan'];
 	let thresholds = [1, 2, 3];
+	let userName = "Mii";
 
 	// change score function
 	function incrementScore() {
@@ -18,6 +19,7 @@
 		levelIndex += 1;
 	}
 	$: console.log(levelIndex);
+	$: console.log(userName);
 	$: levelNameUpper = levels[levelIndex].toUpperCase();
 	
 
@@ -30,30 +32,35 @@
 		//			due to how score thresholds are currently implemented
 	}
 
+	// function nameInput(event) {
+	// 	const enteredValue = event.target.value;
+	// 	userName = enteredValue;
+	// }
+
 </script>
 
 <Navbar />
 
-<Title />
-<Title />
-<Title />
-<Title />
 
 <main class="w3-black">
-	<!-- <h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p> 
-	<p> My name is {name} and my age is {age}</p>
-
-	<button on:click={incrementAge}> Change Age </button> -->
 
 	<div class="w3-card w3-pading-48 w3-margin">
-		<div class="w3-container">
-			<h2>Welcome to Click Master! You are at {levelNameUpper} level.</h2>
-			<p>Click below to increase your training and change your level...</p>
+		<div class="w3-container w3-cell-row">
+			<div class="w3-cell" style="width:50%;">
+				<h2>Welcome to <Title /></h2>
+			</div>
+			<div class="w3-cell" style="width:50%;">
 
-			<button on:click="{incrementScore}">Click</button> <h3>Score: {score}</h3>
+				<button on:click="{incrementScore}">Click</button> <h3>Score: {score}</h3>
 
-			<button on:click="{changeLevel}">Change Level</button>
+				<button on:click="{changeLevel}">Change Level</button>
+				<h2>You are at {levelNameUpper} level.</h2>
+
+				<h3>User Name:</h3>
+				<!-- <input type="text" value="{userName}" on:input="{nameInput}"> long way two-way binding -->
+
+				<input type="text" bind:value="{userName}"> 
+			</div>
 		</div>
 	</div>
 </main>

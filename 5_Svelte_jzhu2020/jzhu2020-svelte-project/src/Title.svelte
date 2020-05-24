@@ -8,7 +8,7 @@
         <img style="float: left; padding-left: 20px;" src="https://media.giphy.com/media/TdRWuQlaiDARWYCatW/giphy.gif">
     </div>
     <br>
-    <h2>Click your way to Victory</h2>
+    <h2 style="font-size: 14px;">Click your way to Victory</h2>
 </div>
 
 <style>
