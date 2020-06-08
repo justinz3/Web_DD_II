@@ -1,67 +1,54 @@
 <script>
 	import Navbar from './Navbar.svelte'
-	import Title from './Title.svelte'
 
-	// default settings
-	let levelIndex = 0;
-	let score = 0;
-	let levels = ['not worthy', 'noob', 'padawan'];
-	let thresholds = [1, 2, 3];
-	let userName = "Mii";
-
-	// change score function
-	function incrementScore() {
-		score += 1;
-	}
-
-	// reactive variables
-	$: if (score >= thresholds[levelIndex] && levelIndex < levels.length - 1) {
-		levelIndex += 1;
-	}
-	$: console.log(levelIndex);
-	$: console.log(userName);
-	$: levelNameUpper = levels[levelIndex].toUpperCase();
-	
-
-	// change level function
-	function changeLevel() {
-		if(score > 0)
-			levelIndex = Math.max(0, levelIndex - 2); 
-		// note: this function is unable to reduce the level back to levelIndex = 0
-		// 			because the reactivity makes the index increment as soon as it is changed 
-		//			due to how score thresholds are currently implemented
-	}
-
-	// function nameInput(event) {
-	// 	const enteredValue = event.target.value;
-	// 	userName = enteredValue;
-	// }
-
+    // default variable values
+    let name = "Mii";
+    let jobTitle = "JumpMan";
+    let jobDescription = "I platform";
+    let profileImage = "https://upload.wikimedia.org/wikipedia/en/a/a9/MarioNSMBUDeluxe.png";
 </script>
 
 <Navbar />
 
 
-<main class="w3-black">
+<!-- Contact Card Form -->
+<div class="w3-container w3-cell-row">
+    
+    <div class="w3-card-4 w3-cell w3-half">
+        <div class="w3-container w3-green">
+            <h2>Contact Card Input</h2>
+        </div>
 
-	<div class="w3-card w3-pading-48 w3-margin">
-		<div class="w3-container w3-cell-row">
-			<div class="w3-cell" style="width:50%;">
-				<h2>Welcome to <Title /></h2>
-			</div>
-			<div class="w3-cell" style="width:50%;">
+        <form class="w3-container">
+            <p>
+                <input class="w3-input w3-hover-cyan" type="text" bind:value="{name}">
+                <label>Name</label></p>
+            <p>     
+                <input class="w3-input w3-hover-cyan" type="text" bind:value="{jobTitle}">
+                <label>Job Title</label>
+            </p>
 
-				<button on:click="{incrementScore}">Click</button> <h3>Score: {score}</h3>
+            <p>     
+                <input class="w3-input w3-hover-cyan" type="text" bind:value="{jobDescription}">
+                <label>Job Description</label>
+            </p>
 
-				<button on:click="{changeLevel}">Change Level</button>
-				<h2>You are at {levelNameUpper} level.</h2>
+            <p>     
+                <input class="w3-input w3-hover-cyan" type="text" bind:value="{profileImage}">
+                <label>Profile Image</label>
+            </p>
+        </form>
+    </div>
 
-				<h3>User Name:</h3>
-				<!-- <input type="text" value="{userName}" on:input="{nameInput}"> long way two-way binding -->
+    <div class="w3-cell w3-half">
 
-				<input type="text" bind:value="{userName}"> 
-			</div>
-		</div>
-	</div>
-</main>
+        
 
+    </div>
+</div>
+
+<style>
+
+
+
+</style>
